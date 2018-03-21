@@ -92,10 +92,10 @@ public class MyFacade {
                   if (str[i]!= str[j]){
                       al.add(str[i]+"-"+str[j]);
                       alDistance.add((int)(Math.random() * 10000));
-                      temp=(int)(Math.random() * 10);
-                      while(temp==0){
-                          temp=(int)(Math.random() * 10);
-                      }
+                      temp=(int)(Math.random() * 2000);
+//                      while(temp==0){
+//                          temp=(int)(Math.random() * 10);
+//                      }
                       alCost.add(temp);
                   }
               }
