@@ -17,10 +17,10 @@ public class WhereTo {
     
     public void getRoute(){
         Scanner sc= new Scanner(System.in); 
-        System.out.print("Please enter departure: A,B,C,.... are valid.");
+        System.out.print("Please enter departure: A~Z are valid.");
         source = sc.nextLine().toUpperCase();
         System.out.println("----------------");
-        System.out.print("Please enter destination: A,B,C,.... are valid.");
+        System.out.print("Please enter destination: A~Z are valid.");
         destination = sc.nextLine().toUpperCase();
     }
     
