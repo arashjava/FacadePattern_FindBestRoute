@@ -43,41 +43,47 @@ public class MyFacade {
             return;
         }
         System.out.println("For direct route: "+ directRoute+ " distance= "+alDistance.get(_ind)+ " km with cost $"+alCost.get(_ind));
-        
+        System.out.println("-------------------------------------");
         ICost costs= new Costs();
         ArrayList<Integer> testRouteCost= costs.getCosts( s1, s2);
-        Integer[] indexes = costs.getBestCost(testRouteCost);
-        showBestCosts( indexes, testRoute, testRouteCost);
-        
-        
-        
         IDistance distance= new Distances();
         ArrayList<Integer> testRouteDistance= distance.getDistances(s1, s2);
+        
+        Integer[] indexes = costs.getBestCost(testRouteCost);
+        showBestCosts( indexes, testRoute, testRouteCost, testRouteDistance);
+ 
         Integer[] indexes1 = distance.getBestDistance(testRouteDistance);
-        showBestDistances(indexes1, testRoute, testRouteDistance);
+        showBestDistances(indexes1, testRoute, testRouteDistance, testRouteCost);
+        
+        System.out.println("-------------------------------------");
+        System.out.println("All the one connection routes: ");
+        System.out.println("-------------------------------------");
+       for(int i=0; i< testRoute.size(); i++){
+            System.out.println(testRoute.get(i)+ " Cost: $"+ testRouteCost.get(i)+ " Distance: "+ testRouteDistance.get(i)+" km");
+        }
     }
  
    
-    private static void showBestCosts(Integer[] indexes, ArrayList<String> routes, ArrayList<Integer> routeCost){
+    private static void showBestCosts(Integer[] indexes, ArrayList<String> routes, ArrayList<Integer> routeCost, ArrayList<Integer> routeDistance){
 
         System.out.println("The other cheapest routes with one connection are: ");
         int priority;
         for (int i=0; i<indexes.length; i++){
             if (indexes[i]<3){
                 priority=indexes[i]+1;
-                System.out.println("\t "+priority+":"+ routes.get(i)+ " --> $"+routeCost.get(i));
+                System.out.println("\t "+priority+":"+ routes.get(i)+ " --> $"+routeCost.get(i) +", distance="+ routeDistance.get(i)+" km");
             }
         }
     }
 
-    private static void showBestDistances(Integer[] indexes, ArrayList<String> routes, ArrayList<Integer> routeDistance){
+    private static void showBestDistances(Integer[] indexes, ArrayList<String> routes, ArrayList<Integer> routeDistance, ArrayList<Integer> routeCost){
 
         System.out.println("The other closest routes with one connection are: ");
         int priority;
         for (int i=0; i<indexes.length; i++){
             if (indexes[i]<3){
                 priority=indexes[i]+1;
-                System.out.println("\t "+priority+":"+ routes.get(i)+ " --> "+routeDistance.get(i)+" km" );
+                System.out.println("\t "+priority+":"+ routes.get(i)+ " --> "+routeDistance.get(i)+" km,  $" + routeCost.get(i));
             }
         }
     }
