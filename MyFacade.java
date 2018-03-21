@@ -78,7 +78,7 @@ public class MyFacade {
 
     private static void showBestDistances(Integer[] indexes, ArrayList<String> routes, ArrayList<Integer> routeDistance, ArrayList<Integer> routeCost){
 
-        System.out.println("The other closest routes with one connection are: ");
+        System.out.println("The other shortest routes with one connection are: ");
         int priority;
         for (int i=0; i<indexes.length; i++){
             if (indexes[i]<3){
